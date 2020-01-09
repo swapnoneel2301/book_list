@@ -1,0 +1,18 @@
+<% include ./partials/header.ejs %>
+
+<h2>what do you think about " <%= book.name %> "</h2>
+
+
+<form action="/books/<%=book._id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
+    <label for="text">comment</label>
+    <!-- <input type="text" id="text" name="comment[text]" class="form-control" placeholder="what do you think" required> -->
+    <textarea name="comment[text]" id="text" cols="30" rows="5"class="form-control" placeholder="what do you think" required><%=comment.text%>
+    </textarea>
+    <input type="submit" value="comment" class="btn btn-lg btn-primary btn-block">
+
+
+</form>
+
+<% include ./partials/footer.ejs %>
+
+ 

@@ -1,0 +1,17 @@
+<% include ./partials/header.ejs %>
+
+<h2>this is the edit page for --- </h2>
+
+<h3>BOOK - " <%= booki.name %>"</h3>
+<h3> AUTHOR - "<%= booki.author %>"</h3>
+
+<form action="/books/<%=booki._id%>?_method=PUT" method="POST">
+    <label for="name">Book name</label>
+    <input type="text" id="name" name="book[name]" class="form-control" placeholder="name of the book" value="<%= booki.name %>" required>
+    <label for="author">author</label>
+    <input type="text" id="author" name="book[author]" class="form-control" placeholder="author" value="<%= booki.author %>" required>
+   
+    <input type="submit" value="submit" class="btn btn-lg btn-outline-success btn-block">
+    <p><a href="/books">Go back</a></p>
+
+</form>

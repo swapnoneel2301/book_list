@@ -1,0 +1,53 @@
+<% include ./partials/header.ejs %>
+
+
+<h2>ok now you are using books home ejs</h2>
+
+<form action="/books/new" method="GET">
+
+  <input type="submit" value="Create new book" class="btn btn-outline-primary create">
+</form>
+<!-- <form action="/register" method="GET">
+    <input type="submit" value="sign Up" class="btn btn-outline-success">
+</form>
+
+<form action="/login" method="GET">
+    <input type="submit" value="Login" class="btn btn-outline-warning">
+</form>
+<form action="/logout" method="GET">
+    <input type="submit" value="Logout" class="btn btn-outline-danger">
+</form> -->
+
+<table  class="table table-borderless ">
+    <thead>
+        <tr>
+            <th scope="col"> <strong>NO.</strong>  </th>
+            <th scope="col"> <strong>BOOK NAME</strong>  </th>
+            <th scope="col"> <strong>AUTHOR</strong> </th>
+            <th scope="col"> <strong>MORE</strong> </th>
+        </tr>
+    </thead>
+    <tbody>
+            <% for(var i=0; i < allBook.length ; i++) { %>
+
+                <tr>
+                    <th scope="row"> <%= i+1 %></td>
+                    <td> <%= allBook[i].name %></td>
+                    <td> <%= allBook[i].author %></td>
+                    <td>
+                        <form action="/books/<%=allBook[i]._id %> " method = "GET">
+                           <input type="submit" value="more" class="btn btn-outline-success">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+
+        
+    </tbody>
+
+</table>
+
+
+<% include ./partials/footer.ejs %>
+
+   

@@ -1,0 +1,18 @@
+<% include ./partials/header.ejs %>
+
+<h2>new book creation page</h2>
+
+<form action="/books" method="POST">
+    <label for="name">name of the book</label>
+    <input type="text" id="name" name="book[name]" class="form-control" placeholder="name of the book" required>
+    <label for="author">author</label>
+    <input type="text" name="book[author]" id="author" class="form-control" placeholder="author" required>
+   
+    <input type="submit" value="submit" class="btn btn-lg btn-outline-primary btn-block">
+
+
+</form>
+
+<p><a href="/books">Go back</a></p>
+
+ 

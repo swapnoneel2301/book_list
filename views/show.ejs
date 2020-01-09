@@ -1,0 +1,63 @@
+<% include ./partials/header.ejs %>
+
+<h5>created by - <%= book.creator.username %></h5>
+    <div class="card border-success mb-3" style="width: 30rem;">
+            <div class="card-body">
+              <h3 class="card-title"><%= book.name %></h3>
+              
+                <hr>
+              Author-<h5 class="card-subtitle mb-2 text-muted"> <%= book.author %></h6>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+              <!-- <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a> -->
+            </div>
+    </div>
+
+   <% if(book.creator.id.equals(currentUser._id)){ %>
+      <form action="/books/<%=book._id %>?_method=DELETE " method = "POST">
+          <input type="submit" value="delete" class="btn btn-danger btn-block">
+      </form>
+   <% } %>
+    
+    <form action="/books/<%=book._id %>/comments/new" method = "GET">
+        <input type="submit" value="Add New Comment" class="btn   btn-success btn-block">
+    </form>
+    <form action="/books" method = "GET">
+       <input type="submit" value="back to home" class="btn  btn-secondary btn-block">
+    </form>
+    <% if(book.creator.id.equals(currentUser._id)){ %>
+      <form action="/books/<%=book._id %>/edit" method = "GET">
+        <input type="submit" value="Edit" class="btn  btn-primary btn-block">
+      </form>
+    <% } %>
+
+
+
+
+<hr>
+<h3>comments</h3>
+<hr>
+
+<% book.comments.forEach(function(comment){ %>
+
+    <div class="card text-white  mb-3 comment" style="max-width: 15rem">
+            <div class="card-header"><%= comment.author.username %></div>
+            <% if(comment.author.id.equals(currentUser._id)){ %>
+
+            <a href="/books/<%=book._id %>/comments/<%=comment._id%>/edit" class="btn btn-warning">Edit</a>
+            <form action="/books/<%=book._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+              <input type="submit" value="Delete" class="btn btn-danger" >
+            </form>
+
+            <% } %>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Primary card title</h5> -->
+              <p class="card-text"><%= comment.text %></p>
+            </div>
+     </div>
+<% }) %>
+
+
+<% include ./partials/footer.ejs %>
+
+
